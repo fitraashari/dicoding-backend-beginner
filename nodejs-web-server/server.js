@@ -10,16 +10,22 @@ const requestListener = (request,response)=>{
     if (url==='/') {
         if (method==='GET') {
             response.statusCode = 200;
-            response.end('<h1>Ini adalah home page</h1>');
+            response.end(JSON.stringify({
+                message: '<h1>Ini adalah home page</h1>'
+            }));
         }else{
             response.statusCode = 400;
-            response.end(`Halaman tidak dapat diakses dengan ${method} request`);
+            response.end(JSON.stringify({
+                message: `Halaman tidak dapat diakses dengan ${method} request`
+            }));
 
         }
     }else if(url==='/about'){
         if (method==='GET') {
             response.statusCode = 200;
-            response.end(`Hlo! Ini adalah halaman about`)
+            response.end(JSON.stringify({
+                message: `Hlo! Ini adalah halaman about`
+            }))
         }else if (method==='POST') {
             response.statusCode = 200;
             let body = [];
@@ -29,16 +35,22 @@ const requestListener = (request,response)=>{
             request.on('end',(chunk)=>{
                 body = Buffer.concat(body).toString();
                 const {name} = JSON.parse(body)
-                response.end(`Halo, ${name} ini adalah halaman about`)
+                response.end(JSON.stringify({
+                    message: `Halo, ${name} ini adalah halaman about`
+                }))
             })
         }else{
             response.statusCode = 400;
-            response.end(`Halaman tidak dapat diakses dengan ${method} request`)
+            response.end(JSON.stringify({
+                message: `Halaman tidak dapat diakses dengan ${method} request`
+            }))
 
         }
     }else{
         response.statusCode = 404;
-        response.end(`Halaman tidak ditemukan!`)
+        response.end(JSON.stringify({
+            message: `Halaman tidak ditemukan`
+        }))
 
     }
 
