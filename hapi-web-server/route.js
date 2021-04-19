@@ -18,7 +18,11 @@ const routes = [
         path: '/hello/{name?}',
         handler: (request,h)=>{
             const {name="stranger"} = request.params;
-            return `Hallo ${name} selamat datang`;
+            const {lang} = request.query;
+            if (lang==="id") {
+                return `Hai ${name} selamat datang`;
+            }
+            return `Hallo ${name} welcome`;
         }
     },
     {
