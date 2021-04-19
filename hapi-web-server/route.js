@@ -30,7 +30,10 @@ const routes = [
         path: '/login',
         handler: (request,h)=>{
             const {username, password} = request.payload;
-            return `Welcome ${username}!`;
+            const response = h.response('success')
+            response.type('text/plain');
+            return response;
+            // return `Welcome ${username}!`;
         }
     },
     {
