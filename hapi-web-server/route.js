@@ -15,6 +15,14 @@ const routes = [
     },
     {
         method: 'GET',
+        path: '/hello/{name?}',
+        handler: (request,h)=>{
+            const {name="stranger"} = request.params;
+            return `Hallo ${name} selamat datang`;
+        }
+    },
+    {
+        method: 'GET',
         path: '/about',
         handler: (request,h)=>{
             return `About Page`;
@@ -27,6 +35,7 @@ const routes = [
             return `Halaman tidak dapat diakses dengan method tersebut`;
         }
     },
+    
     {
         method: '*',
         path: '/{any*}',
