@@ -2,13 +2,15 @@ const http = require('http');
 const port = 3000;
 const host = 'localhost';
 const requestListener = (request,response)=>{
-    response.setHeader('Content-Type','text/html');
+    response.setHeader('Content-Type','application/json');
+    response.setHeader('X-Powered-By', 'NodeJS');
+
     const {method,url} = request;
 
     if (url==='/') {
         if (method==='GET') {
             response.statusCode = 200;
-            response.end('Ini adalah home page');
+            response.end('<h1>Ini adalah home page</h1>');
         }else{
             response.statusCode = 400;
             response.end(`Halaman tidak dapat diakses dengan ${method} request`);
